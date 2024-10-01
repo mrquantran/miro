@@ -93,8 +93,10 @@ def _hparams(algorithm, dataset, random_state):
         hparams["beta"] = (1.0, 1.0)
         # cutmix_prob is set to 1.0 for ImageNet and 0.5 for CIFAR100 in the original paper.
         hparams["cutmix_prob"] = (1.0, 1.0)
-
+    elif algorithm in ['MIRO']:
+        hparams["resnet18"] = (True, True)
     return hparams
+
 
 
 def default_hparams(algorithm, dataset):

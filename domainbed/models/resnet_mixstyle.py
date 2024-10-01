@@ -4,6 +4,7 @@ https://github.com/KaiyangZhou/mixstyle-release/blob/master/imcls/models/resnet_
 import torch
 import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
+from torchvision.models import resnet18
 
 from .mixstyle import MixStyle
 
@@ -211,6 +212,7 @@ def resnet18_mixstyle_L234_p0d5_a0d1(pretrained=True, **kwargs):
     )
 
     if pretrained:
+        # Load pretrained weights from torchvision
         init_pretrained_weights(model, model_urls["resnet18"])
 
     return model

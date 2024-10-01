@@ -55,6 +55,13 @@ def main():
         help="[fast, all]. if fast, ignore train_in datasets in evaluation time.",
     )
     parser.add_argument("--prebuild_loader", action="store_true", help="Pre-build eval loaders")
+    parser.add_argument(
+        "--model",
+        type=str,
+        default="resnet50",
+        choices=["resnet18", "resnet50"],
+        help="Model architecture to use",
+    )
     args, left_argv = parser.parse_known_args()
     args.deterministic = True
 
@@ -65,6 +72,8 @@ def main():
     keys = [open(key, encoding="utf8") for key in keys]
     hparams = Config(*keys, default=hparams)
     hparams.argv_update(left_argv)
+
+    hparams["model"] = args.model
 
     # setup debug
     if args.debug:
